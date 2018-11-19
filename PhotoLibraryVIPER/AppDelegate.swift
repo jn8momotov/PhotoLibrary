@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        DispatchQueue.main.async {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            if let window = self.window {
+                window.backgroundColor = UIColor.white
+                let navController = UINavigationController()
+                let libraryController = LibraryViewController()
+                navController.viewControllers = [libraryController]
+                window.rootViewController = navController
+                LibraryAssembly.sharedInstance.configure(libraryController)
+                window.makeKeyAndVisible()
+            }
+        }        
         return true
     }
 
